@@ -21,6 +21,10 @@ type WikiResp struct {
     ContentUrls map[string]content `json:"content_urls"`
 }
 
+/**
+ *  Get a page from wikipedia
+ *  Given url should link to the random page for more fun
+ */
 func getWikiPage(url string) (WikiResp, error) {
     resp, err := http.Get(url)
     if err != nil { return WikiResp{}, err }
@@ -37,6 +41,9 @@ func getWikiPage(url string) (WikiResp, error) {
     return page, nil
 }
 
+/**
+ *  FormatMessage into a Toot
+ */
 func formatMessage(page WikiResp) mastodon.Toot {
     return mastodon.Toot{
         Status: fmt.Sprintf("%s\n\n%s", page.Extract, page.ContentUrls["desktop"]["page"]),
