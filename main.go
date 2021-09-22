@@ -48,7 +48,6 @@ func formatMessage(page WikiResp) mastodon.Toot {
     return mastodon.Toot{
         Status: fmt.Sprintf("%s\n\n%s", page.Extract, page.ContentUrls["desktop"]["page"]),
         Visibility: "unlisted",
-        SpoilerText: page.Title,
     }
 }
 
