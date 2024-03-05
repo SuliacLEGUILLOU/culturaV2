@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 
@@ -34,7 +34,7 @@ func getWikiPage(url string) (WikiResp, error) {
 		return WikiResp{}, fmt.Errorf(resp.Status)
 	}
 
-	raw_body, err := ioutil.ReadAll(resp.Body)
+	raw_body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return WikiResp{}, err
 	}
